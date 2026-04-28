@@ -1,0 +1,100 @@
+# Python Function to Check for Duplicated Characters
+
+Here are several approaches to check if a string contains duplicate characters:
+
+## Basic Approach
+
+```python
+def has_duplicates(s):
+    """
+    Check if a string has any duplicated characters.
+
+    Args:
+        s (str): The string to check
+
+    Returns:
+        bool: True if duplicates exist, False otherwise
+    """
+    return len(s) != len(set(s))
+
+# Example usage
+print(has_duplicates("hello"))      # True (l appears twice)
+print(has_duplicates("world"))      # True (o appears in world)
+print(has_duplicates("python"))     # False (all unique)
+```
+
+## More Detailed Version (Returns Which Characters are Duplicated)
+
+```python
+def find_duplicates(s):
+    """
+    Find all duplicated characters in a string.
+
+    Args:
+        s (str): The string to check
+
+    Returns:
+        set: Set of characters that appear more than once
+    """
+    seen = set()
+    duplicates = set()
+
+    for char in s:
+        if char in seen:
+            duplicates.add(char)
+        else:
+            seen.add(char)
+
+    return duplicates
+
+# Example usage
+print(find_duplicates("hello"))           # {'l'}
+print(find_duplicates("programming"))     # {'g', 'm', 'r'}
+print(find_duplicates("python"))          # set() (empty set)
+```
+
+## Using Collections.Counter
+
+```python
+from collections import Counter
+
+def get_duplicate_counts(s):
+    """
+    Get count of each duplicated character.
+
+    Args:
+        s (str): The string to check
+
+    Returns:
+        dict: Dictionary with duplicated characters and their counts
+    """
+    counts = Counter(s)
+    return {char: count for char, count in counts.items() if count > 1}
+
+# Example usage
+print(get_duplicate_counts("hello"))         # {'l': 2}
+print(get_duplicate_counts("mississippi"))   # {'i': 4, 's': 4, 'p': 2}
+```
+
+## Case-Insensitive Version
+
+```python
+def has_duplicates_case_insensitive(s):
+    """
+    Check for duplicates ignoring case.
+
+    Args:
+        s (str): The string to check
+
+    Returns:
+        bool: True if duplicates exist (case-insensitive), False otherwise
+    """
+    s_lower = s.lower()
+    return len(s_lower) != len(set(s_lower))
+
+# Example usage
+print(has_duplicates_case_insensitive("Hello"))  # True (H and h)
+print(has_duplicates_case_insensitive("World"))  # False
+```
+
+Choose the version that best fits your needs!
