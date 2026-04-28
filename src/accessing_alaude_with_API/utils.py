@@ -11,11 +11,12 @@ def add_assistant_message(messages, text):
     messages.append(assistant_message)
 
 
-def chat(messages: list[dict], system_prompt: str | None = None):
+def chat(messages: list[dict], system_prompt: str | None = None, temperature: float = 0.5):
     parameters = {
         "model": model,
         "max_tokens": 1000,
         "messages": messages,
+        "temperature": temperature,
     }
     if system_prompt:
         parameters["system"] = system_prompt
