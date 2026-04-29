@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Create a Python function that validates if an AWS S3 bucket name follows AWS naming conventions (lowercase, 3-63 characters, no consecutive hyphens, starts and ends with alphanumeric)",
+    "format": "python",
+    "solution_criteria": "Function should return True for valid bucket names like 'my-bucket-123' and False for invalid names like 'My-Bucket' or 'my--bucket'"
+  },
+  {
+    "task": "Create a JSON object that represents an AWS IAM policy allowing read-only access to a specific S3 bucket named 'company-data'",
+    "format": "json",
+    "solution_criteria": "JSON should include proper structure with Version, Statement, Effect, Action (s3:GetObject, s3:ListBucket), and Resource fields targeting the specified bucket"
+  },
+  {
+    "task": "Create a regex pattern that matches valid AWS EC2 instance IDs (format: i- followed by 17 hexadecimal characters)",
+    "format": "regex",
+    "solution_criteria": "Regex should match valid instance IDs like 'i-0a1b2c3d4e5f6g7h8' and reject invalid formats like 'i-invalid' or 'ec2-0a1b2c3d4e5f6g7h8'"
+  }
+]
