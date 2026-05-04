@@ -1,0 +1,71 @@
+[
+  {
+    "output": "```json\n[\n  \"Carbon pricing mechanisms\",\n  \"Sectoral economic outcomes\",\n  \"Climate change\",\n  \"Arctic permafrost\",\n  \"Methane emissions\",\n  \"Stranded carbon assets\",\n  \"Carbon tax\",\n  \"Industrial competitiveness\",\n  \"Manufacturing productivity\",\n  \"Green subsidies\",\n  \"Renewable energy infrastructure\",\n  \"Job creation\",\n  \"Distributional equity\",\n  \"Low-income communities\",\n  \"Fossil fuel industries\",\n  \"Environmental economics\",\n  \"Climate policy\"\n]\n```",
+    "test_case": {
+      "prompt_inputs": {
+        "content": "Recent empirical studies demonstrate the intricate linkages between carbon pricing mechanisms and sectoral economic outcomes in developed economies. Climate scientists project that a 2\u00b0C warming threshold will trigger irreversible tipping points in Arctic permafrost systems, releasing methane deposits worth an estimated $43 trillion in stranded carbon assets. Simultaneously, environmental economists argue that carbon tax implementations reduce industrial competitiveness, with manufacturing sectors experiencing 3-8% productivity losses in the short term. Policy analysts contend that complementary green subsidies for renewable energy infrastructure can offset these losses while creating 2.3 million jobs annually, though distributional equity concerns persist regarding impacts on low-income communities dependent on fossil fuel industries."
+      },
+      "solution_criteria": [
+        "Extracts topics spanning at least three distinct domains (climate science, economics, and policy)",
+        "Separates interdisciplinary topics into distinct array elements rather than combining them",
+        "Returns output as a valid JSON array of strings"
+      ],
+      "task_description": "Extract topics out of a passage of text from a scholarly article into a JSON array of strings",
+      "scenario": "Testing with a passage containing interdisciplinary topics spanning multiple domains (e.g., climate science, economics, and policy) to verify the prompt can identify and separate distinct subject areas"
+    },
+    "score": 8,
+    "reasoning": "The solution meets all mandatory requirements: it contains a valid JSON array of strings with only topic names and no commentary, and the response contains only the JSON array. It successfully spans three distinct domains as required by secondary criteria and separates interdisciplinary topics appropriately. However, there are minor deficiencies: the omission of 'tipping points' (a concept explicitly mentioned in the passage) and the inclusion of two meta-categorical topics rather than concrete topics extracted from the text. These are relatively minor issues that don't undermine the overall quality of the extraction."
+  },
+  {
+    "output": "```json\n[\n  \"Machine learning\",\n  \"Natural language processing\",\n  \"Computational linguistics\",\n  \"Deep learning\",\n  \"Neural networks\",\n  \"Recurrent neural networks\",\n  \"Transformer architectures\",\n  \"Attention mechanisms\",\n  \"Machine translation\",\n  \"Sentiment analysis\",\n  \"Named entity recognition\",\n  \"Artificial intelligence\",\n  \"Virtual assistants\",\n  \"Chatbots\",\n  \"Information retrieval\",\n  \"Large language models\",\n  \"Pretraining\",\n  \"Language understanding\"\n]\n```",
+    "test_case": {
+      "prompt_inputs": {
+        "content": "Machine learning approaches to natural language processing have revolutionized computational linguistics. Deep learning models, particularly neural networks and their specialized variants like recurrent neural networks (RNNs) and transformer architectures, have become the dominant paradigm. Transformers, which rely on attention mechanisms, have proven especially effective for tasks such as machine translation, sentiment analysis, and named entity recognition. Within the broader context of artificial intelligence, natural language processing applications now power virtual assistants, chatbots, and information retrieval systems. Recent advances in large language models represent a convergence of transformer architectures, attention mechanisms, and massive-scale pretraining on diverse text corpora, enabling unprecedented performance on downstream language understanding tasks."
+      },
+      "solution_criteria": [
+        "Identifies all distinct topics at different levels of abstraction (e.g., machine learning, natural language processing, deep learning, neural networks, transformers, attention mechanisms, language models)",
+        "Appropriately handles hierarchical relationships where some topics are subtopics of others without unnecessary duplication or omission of parent or child topics",
+        "Returns results as a JSON array of strings with no additional metadata or structural hierarchy"
+      ],
+      "task_description": "Extract topics out of a passage of text from a scholarly article into a JSON array of strings",
+      "scenario": "Testing with a passage containing overlapping or nested topics where some topics are subtopics of others to verify the prompt handles hierarchical relationships appropriately"
+    },
+    "score": 9,
+    "reasoning": "The solution meets all mandatory requirements: it is a valid JSON array of strings with only topic names and no extra commentary. Regarding secondary criteria, it successfully identifies topics across different abstraction levels (machine learning \u2192 deep learning \u2192 neural networks \u2192 transformers) and appropriately includes both parent and child concepts without unnecessary duplication. The hierarchical relationships are handled well - for example, 'Recurrent neural networks' and 'Transformer architectures' are both included as specific neural network variants alongside the parent 'Neural networks' topic. The only minor issue is the inclusion of 'Pretraining' as a standalone topic, which is more of a technique than a primary topic, though this is a borderline case. Overall, the solution demonstrates strong topic extraction with comprehensive coverage of the passage content."
+  },
+  {
+    "output": "```json\n[\n  \"CRISPR-Cas9 system\",\n  \"Genome editing\",\n  \"Programmable DNA-targeting\",\n  \"Single-guide RNA\",\n  \"Off-target mitigation\",\n  \"High-fidelity Cas9 variants\",\n  \"PAM specificity\",\n  \"Mismatch tolerance\",\n  \"On-target selectivity\",\n  \"Base editing\",\n  \"Cytosine-to-thymine conversion\",\n  \"Adenine-to-guanine conversion\",\n  \"Deaminase domains\",\n  \"Point mutations\",\n  \"Double-strand breaks\",\n  \"Prime editing\",\n  \"Reverse transcriptase\",\n  \"Fusion proteins\",\n  \"Insertions\",\n  \"Deletions\",\n  \"Transversions\",\n  \"Target-site priming\",\n  \"Flap-equilibration dynamics\",\n  \"Therapeutic applications\"\n]\n```",
+    "test_case": {
+      "prompt_inputs": {
+        "content": "The CRISPR-Cas9 system has revolutionized genome editing through its programmable DNA-targeting capabilities mediated by single-guide RNA (sgRNA) complexes. Recent advances in off-target mitigation employ high-fidelity Cas9 variants with enhanced PAM specificity and reduced mismatch tolerance, achieving >99% on-target selectivity. Concurrent developments in base editing, particularly cytosine-to-thymine (C-to-T) and adenine-to-guanine (A-to-G) conversions via fusion proteins containing deaminase domains, enable point mutations without double-strand breaks. Prime editing further extends the therapeutic potential by utilizing engineered reverse transcriptase-Cas9 fusion proteins to catalyze precise insertions, deletions, and transversions through a mechanism involving target-site priming and flap-equilibration dynamics."
+      },
+      "solution_criteria": [
+        "Extracts all major technical topics (CRISPR-Cas9, off-target mitigation, base editing, prime editing, etc.) from the specialized passage",
+        "Correctly identifies domain-specific terms and concepts as distinct topics",
+        "Returns topics as a valid JSON array of strings",
+        "Does not include extraneous words or incomplete topic names"
+      ],
+      "task_description": "Extract topics out of a passage of text from a scholarly article into a JSON array of strings",
+      "scenario": "Testing with a dense, technical passage from a specialized field (e.g., quantum physics or biochemistry) containing domain-specific jargon to ensure proper topic extraction from highly specialized vocabulary"
+    },
+    "score": 8,
+    "reasoning": "The solution meets all mandatory requirements: it contains a valid JSON array of strings with only topics and no extra commentary, and the response is the JSON array alone. It successfully extracts all major technical topics from the specialized passage (CRISPR-Cas9, off-target mitigation, base editing, prime editing, etc.) and correctly identifies domain-specific concepts as distinct topics. The primary deficiency is the inclusion of 'Therapeutic applications' which is not explicitly stated in the source text\u2014this represents a minor violation of the criterion to extract topics 'out of' the passage rather than infer them. The solution is otherwise thorough and well-structured."
+  },
+  {
+    "output": "```json\n[\n  \"Cognitive load\",\n  \"Information retention\",\n  \"Asynchronous learning environments\",\n  \"Instructional design\",\n  \"Fragmented content delivery\",\n  \"Multiple platforms\",\n  \"Working memory\",\n  \"Spacing effect\",\n  \"Distributed practice\",\n  \"Long-term encoding\",\n  \"Neural consolidation\",\n  \"Massed presentation\",\n  \"Learning design trade-offs\"\n]\n```",
+    "test_case": {
+      "prompt_inputs": {
+        "content": "The interplay between cognitive load and information retention during asynchronous learning environments presents complex challenges for instructional design. When learners encounter fragmented content delivery across multiple platforms, their working memory becomes constrained, yet paradoxically, the spacing effect\u2014the phenomenon where distributed practice enhances long-term encoding\u2014suggests that such fragmentation, if strategically implemented, may facilitate deeper neural consolidation than massed presentation would achieve."
+      },
+      "solution_criteria": [
+        "Extracts both explicitly mentioned topics (cognitive load, information retention, asynchronous learning, instructional design, working memory, spacing effect) and inferred emergent themes (memory consolidation, learning design trade-offs)",
+        "Identifies implicit connections between concepts that are not stated directly but emerge from the passage context",
+        "Returns results as a JSON array of strings with no additional metadata"
+      ],
+      "task_description": "Extract topics out of a passage of text from a scholarly article into a JSON array of strings",
+      "scenario": "Testing with a short, concise passage containing minimal explicit topic keywords but requiring inference from context to assess whether the prompt can extract implicit or emergent themes"
+    },
+    "score": 9,
+    "reasoning": "The solution meets all mandatory requirements: it contains a valid JSON array with topics as strings only, no extra commentary, and returns only the JSON array. It successfully extracts both explicit topics mentioned directly in the text and inferred emergent themes as required by the secondary criteria. The inclusion of 'Learning design trade-offs' demonstrates understanding of implicit connections between the spacing effect paradox and instructional design challenges. Minor redundancy exists between 'Fragmented content delivery' and 'Multiple platforms,' but both represent distinct aspects discussed in the passage. The solution comprehensively addresses the task requirements."
+  }
+]

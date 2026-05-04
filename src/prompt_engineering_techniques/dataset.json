@@ -1,0 +1,50 @@
+[
+  {
+    "prompt_inputs": {
+      "height": "178 cm",
+      "weight": "82 kg",
+      "goal": "Strength training and muscle recovery for weightlifting competition in 2 weeks",
+      "restrictions": "Vegetarian, no more than 30 minutes total meal prep time"
+    },
+    "solution_criteria": [
+      "Meal plan covers all 3 meals and includes at least 2 vegetarian protein sources per day (e.g., legumes, dairy, nuts, tofu)",
+      "Provides adequate protein for muscle recovery (approximately 1.6-2.2g per kg body weight)",
+      "All meals can be prepared or assembled in 30 minutes total or use quick/no-prep options",
+      "Includes recovery-focused nutrition (carbohydrates post-workout, electrolytes, micronutrients)"
+    ],
+    "task_description": "Write a compact, concise 1 day meal plan for a single athlete",
+    "scenario": "Testing with a strength-based athlete (weightlifter) with dietary restrictions (vegetarian) and limited meal prep time, emphasizing protein sources and recovery nutrition"
+  },
+  {
+    "prompt_inputs": {
+      "height": "180",
+      "weight": "78",
+      "goal": "High-performance nutrition for competitive swimming with training sessions at 6:00 AM and 4:00 PM",
+      "restrictions": "No nuts, no dairy products"
+    },
+    "solution_criteria": [
+      "Meal plan covers all 3 meals plus snacks timed appropriately around swim training sessions",
+      "All meals and snacks are nut-free and dairy-free",
+      "Includes hydration strategy with fluid intake recommendations around workouts",
+      "Meals are practical, concise, and achievable within 1 day"
+    ],
+    "task_description": "Write a compact, concise 1 day meal plan for a single athlete",
+    "scenario": "Testing with a sport-specific athlete (swimmer) having allergies (nuts and dairy) and needing meals timed around training sessions with hydration considerations"
+  },
+  {
+    "prompt_inputs": {
+      "height": "178 cm",
+      "weight": "68 kg",
+      "goal": "Marathon race day nutrition - high carbohydrate loading with sustained energy for 42km endurance event",
+      "restrictions": "None"
+    },
+    "solution_criteria": [
+      "Meal plan covers all meals for one full day with compact formatting",
+      "Total daily calories support high endurance athlete needs (approximately 3000-3500 kcal)",
+      "Macronutrient ratio emphasizes carbohydrates (60-65%), moderate protein (15-20%), and healthy fats (15-20%)",
+      "Includes practical timing and portion sizes suitable for marathon preparation"
+    ],
+    "task_description": "Write a compact, concise 1 day meal plan for a single athlete",
+    "scenario": "Testing with a high-performance endurance athlete (marathon runner) requiring high caloric intake and carbohydrate loading, with specific macronutrient ratios"
+  }
+]
