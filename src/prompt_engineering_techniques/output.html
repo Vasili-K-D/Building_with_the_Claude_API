@@ -1,0 +1,266 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prompt Evaluation Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                color: #333;
+            }
+            .header {
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .summary-stats {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .stat-box {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                flex-basis: 30%;
+                min-width: 200px;
+            }
+            .stat-value {
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th {
+                background-color: #4a4a4a;
+                color: white;
+                text-align: left;
+                padding: 12px;
+            }
+            td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                vertical-align: top;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .output-cell {
+                white-space: pre-wrap;
+            }
+            .score {
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 3px;
+                display: inline-block;
+            }
+            .score-high {
+                background-color: #c8e6c9;
+                color: #2e7d32;
+            }
+            .score-medium {
+                background-color: #fff9c4;
+                color: #f57f17;
+            }
+            .score-low {
+                background-color: #ffcdd2;
+                color: #c62828;
+            }
+            .output {
+                overflow: auto;
+                white-space: pre-wrap;
+            }
+
+            .output pre {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 10px;
+                margin: 0;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 14px;
+                line-height: 1.4;
+                color: #333;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                overflow-x: auto;
+                white-space: pre-wrap; 
+                word-wrap: break-word; 
+            }
+
+            td {
+                width: 20%;
+            }
+            .score-col {
+                width: 80px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Prompt Evaluation Report</h1>
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div>Total Test Cases</div>
+                    <div class="stat-value">4</div>
+                </div>
+                <div class="stat-box">
+                    <div>Average Score</div>
+                    <div class="stat-value">8.5 / 10</div>
+                </div>
+                <div class="stat-box">
+                    <div>Pass Rate (≥7)</div>
+                    <div class="stat-value">100.0%</div>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Prompt Inputs</th>
+                    <th>Solution Criteria</th>
+                    <th>Output</th>
+                    <th>Score</th>
+                    <th>Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+            <tr>
+                <td>Testing with a passage containing interdisciplinary topics spanning multiple domains (e.g., climate science, economics, and policy) to verify the prompt can identify and separate distinct subject areas</td>
+                <td class="prompt-inputs"><strong>content:</strong> Recent empirical studies demonstrate the intricate linkages between carbon pricing mechanisms and sectoral economic outcomes in developed economies. Climate scientists project that a 2°C warming threshold will trigger irreversible tipping points in Arctic permafrost systems, releasing methane deposits worth an estimated $43 trillion in stranded carbon assets. Simultaneously, environmental economists argue that carbon tax implementations reduce industrial competitiveness, with manufacturing sectors experiencing 3-8% productivity losses in the short term. Policy analysts contend that complementary green subsidies for renewable energy infrastructure can offset these losses while creating 2.3 million jobs annually, though distributional equity concerns persist regarding impacts on low-income communities dependent on fossil fuel industries.</td>
+                <td class="criteria">• Extracts topics spanning at least three distinct domains (climate science, economics, and policy)<br>• Separates interdisciplinary topics into distinct array elements rather than combining them<br>• Returns output as a valid JSON array of strings</td>
+                <td class="output"><pre>```json
+[
+  "Carbon pricing mechanisms",
+  "Sectoral economic outcomes",
+  "Climate change",
+  "Arctic permafrost",
+  "Methane emissions",
+  "Stranded carbon assets",
+  "Carbon tax",
+  "Industrial competitiveness",
+  "Manufacturing productivity",
+  "Green subsidies",
+  "Renewable energy infrastructure",
+  "Job creation",
+  "Distributional equity",
+  "Low-income communities",
+  "Fossil fuel industries",
+  "Environmental economics",
+  "Climate policy"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">8</span></td>
+                <td class="reasoning">The solution meets all mandatory requirements: it contains a valid JSON array of strings with only topic names and no commentary, and the response contains only the JSON array. It successfully spans three distinct domains as required by secondary criteria and separates interdisciplinary topics appropriately. However, there are minor deficiencies: the omission of 'tipping points' (a concept explicitly mentioned in the passage) and the inclusion of two meta-categorical topics rather than concrete topics extracted from the text. These are relatively minor issues that don't undermine the overall quality of the extraction.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a passage containing overlapping or nested topics where some topics are subtopics of others to verify the prompt handles hierarchical relationships appropriately</td>
+                <td class="prompt-inputs"><strong>content:</strong> Machine learning approaches to natural language processing have revolutionized computational linguistics. Deep learning models, particularly neural networks and their specialized variants like recurrent neural networks (RNNs) and transformer architectures, have become the dominant paradigm. Transformers, which rely on attention mechanisms, have proven especially effective for tasks such as machine translation, sentiment analysis, and named entity recognition. Within the broader context of artificial intelligence, natural language processing applications now power virtual assistants, chatbots, and information retrieval systems. Recent advances in large language models represent a convergence of transformer architectures, attention mechanisms, and massive-scale pretraining on diverse text corpora, enabling unprecedented performance on downstream language understanding tasks.</td>
+                <td class="criteria">• Identifies all distinct topics at different levels of abstraction (e.g., machine learning, natural language processing, deep learning, neural networks, transformers, attention mechanisms, language models)<br>• Appropriately handles hierarchical relationships where some topics are subtopics of others without unnecessary duplication or omission of parent or child topics<br>• Returns results as a JSON array of strings with no additional metadata or structural hierarchy</td>
+                <td class="output"><pre>```json
+[
+  "Machine learning",
+  "Natural language processing",
+  "Computational linguistics",
+  "Deep learning",
+  "Neural networks",
+  "Recurrent neural networks",
+  "Transformer architectures",
+  "Attention mechanisms",
+  "Machine translation",
+  "Sentiment analysis",
+  "Named entity recognition",
+  "Artificial intelligence",
+  "Virtual assistants",
+  "Chatbots",
+  "Information retrieval",
+  "Large language models",
+  "Pretraining",
+  "Language understanding"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">9</span></td>
+                <td class="reasoning">The solution meets all mandatory requirements: it is a valid JSON array of strings with only topic names and no extra commentary. Regarding secondary criteria, it successfully identifies topics across different abstraction levels (machine learning → deep learning → neural networks → transformers) and appropriately includes both parent and child concepts without unnecessary duplication. The hierarchical relationships are handled well - for example, 'Recurrent neural networks' and 'Transformer architectures' are both included as specific neural network variants alongside the parent 'Neural networks' topic. The only minor issue is the inclusion of 'Pretraining' as a standalone topic, which is more of a technique than a primary topic, though this is a borderline case. Overall, the solution demonstrates strong topic extraction with comprehensive coverage of the passage content.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a dense, technical passage from a specialized field (e.g., quantum physics or biochemistry) containing domain-specific jargon to ensure proper topic extraction from highly specialized vocabulary</td>
+                <td class="prompt-inputs"><strong>content:</strong> The CRISPR-Cas9 system has revolutionized genome editing through its programmable DNA-targeting capabilities mediated by single-guide RNA (sgRNA) complexes. Recent advances in off-target mitigation employ high-fidelity Cas9 variants with enhanced PAM specificity and reduced mismatch tolerance, achieving >99% on-target selectivity. Concurrent developments in base editing, particularly cytosine-to-thymine (C-to-T) and adenine-to-guanine (A-to-G) conversions via fusion proteins containing deaminase domains, enable point mutations without double-strand breaks. Prime editing further extends the therapeutic potential by utilizing engineered reverse transcriptase-Cas9 fusion proteins to catalyze precise insertions, deletions, and transversions through a mechanism involving target-site priming and flap-equilibration dynamics.</td>
+                <td class="criteria">• Extracts all major technical topics (CRISPR-Cas9, off-target mitigation, base editing, prime editing, etc.) from the specialized passage<br>• Correctly identifies domain-specific terms and concepts as distinct topics<br>• Returns topics as a valid JSON array of strings<br>• Does not include extraneous words or incomplete topic names</td>
+                <td class="output"><pre>```json
+[
+  "CRISPR-Cas9 system",
+  "Genome editing",
+  "Programmable DNA-targeting",
+  "Single-guide RNA",
+  "Off-target mitigation",
+  "High-fidelity Cas9 variants",
+  "PAM specificity",
+  "Mismatch tolerance",
+  "On-target selectivity",
+  "Base editing",
+  "Cytosine-to-thymine conversion",
+  "Adenine-to-guanine conversion",
+  "Deaminase domains",
+  "Point mutations",
+  "Double-strand breaks",
+  "Prime editing",
+  "Reverse transcriptase",
+  "Fusion proteins",
+  "Insertions",
+  "Deletions",
+  "Transversions",
+  "Target-site priming",
+  "Flap-equilibration dynamics",
+  "Therapeutic applications"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">8</span></td>
+                <td class="reasoning">The solution meets all mandatory requirements: it contains a valid JSON array of strings with only topics and no extra commentary, and the response is the JSON array alone. It successfully extracts all major technical topics from the specialized passage (CRISPR-Cas9, off-target mitigation, base editing, prime editing, etc.) and correctly identifies domain-specific concepts as distinct topics. The primary deficiency is the inclusion of 'Therapeutic applications' which is not explicitly stated in the source text—this represents a minor violation of the criterion to extract topics 'out of' the passage rather than infer them. The solution is otherwise thorough and well-structured.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a short, concise passage containing minimal explicit topic keywords but requiring inference from context to assess whether the prompt can extract implicit or emergent themes</td>
+                <td class="prompt-inputs"><strong>content:</strong> The interplay between cognitive load and information retention during asynchronous learning environments presents complex challenges for instructional design. When learners encounter fragmented content delivery across multiple platforms, their working memory becomes constrained, yet paradoxically, the spacing effect—the phenomenon where distributed practice enhances long-term encoding—suggests that such fragmentation, if strategically implemented, may facilitate deeper neural consolidation than massed presentation would achieve.</td>
+                <td class="criteria">• Extracts both explicitly mentioned topics (cognitive load, information retention, asynchronous learning, instructional design, working memory, spacing effect) and inferred emergent themes (memory consolidation, learning design trade-offs)<br>• Identifies implicit connections between concepts that are not stated directly but emerge from the passage context<br>• Returns results as a JSON array of strings with no additional metadata</td>
+                <td class="output"><pre>```json
+[
+  "Cognitive load",
+  "Information retention",
+  "Asynchronous learning environments",
+  "Instructional design",
+  "Fragmented content delivery",
+  "Multiple platforms",
+  "Working memory",
+  "Spacing effect",
+  "Distributed practice",
+  "Long-term encoding",
+  "Neural consolidation",
+  "Massed presentation",
+  "Learning design trade-offs"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">9</span></td>
+                <td class="reasoning">The solution meets all mandatory requirements: it contains a valid JSON array with topics as strings only, no extra commentary, and returns only the JSON array. It successfully extracts both explicit topics mentioned directly in the text and inferred emergent themes as required by the secondary criteria. The inclusion of 'Learning design trade-offs' demonstrates understanding of implicit connections between the spacing effect paradox and instructional design challenges. Minor redundancy exists between 'Fragmented content delivery' and 'Multiple platforms,' but both represent distinct aspects discussed in the passage. The solution comprehensively addresses the task requirements.</td>
+            </tr>
+        
+            </tbody>
+        </table>
+    </body>
+    </html>
+    
